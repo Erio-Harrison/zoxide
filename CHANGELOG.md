@@ -7,6 +7,62 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Bash/Zsh: fix `z` failing on Cygwin/MSYS2 due to `cygpath` being passed a bad string.
+- Nushell: `z` now handles relative paths through symlinked directories.
+
+## [0.10.0] - 2026-07-04
+
+### Added
+
+- `import` now supports fetching entries from `atuin`.
+- `import` now auto-detects database files.
+- `import` now skips directories matching `$_ZO_EXCLUDE_DIRS`.
+- POSIX: support for non-Cygwin Windows environments (e.g. Busybox).
+- Fish: Space-Tab completions now display and run the selected command.
+- Bash/POSIX/Zsh: `z` now honors `$CDPATH`.
+- Bash: don't add to the database when history is disabled (`set +o history`).
+- Nushell: export commands so the init script can be imported with `use`.
+- Support for RISC-V (riscv64) Linux.
+
+### Changed
+
+- `import` now takes a subcommand instead of the `--from` flag.
+- Nushell: upgrade minimum supported version to v0.106.0.
+
+### Fixed
+
+- Bash/POSIX/Zsh: `z` now handles relative paths through symlinked directories.
+- Bash/Fish/POSIX/Zsh: `_ZO_RESOLVE_SYMLINKS` now works on Windows.
+- Bash: handle `$PROMPT_COMMAND` values ending in a semicolon.
+- PowerShell: navigate to home directory with `z` on drives that don't define `HOME`.
+- PowerShell: use fully qualified names when invoking cmdlets.
+- Zsh: skip doctor diagnostics in non-interactive shells.
+- Zsh: avoid inserting a trailing space when cancelling interactive Space-Tab completions.
+- Bash: avoid blanking the prompt when cancelling interactive Space-Tab completions.
+- Bash/Fish/Zsh: avoid drawing a new line when Space-Tab completion finds no matches.
+- Tcsh: preserve any existing `precmd` alias instead of overwriting it.
+- Nushell: complete only directories for `z`, instead of all files.
+
+## [0.9.9] - 2026-01-31
+
+### Added
+
+- Support for Android ARMv7.
+- Fish: support for v4.1.0+.
+
+### Fixed
+
+- Nushell: use sigil operator when calling external commands.
+- Zsh: support multiple digits in `z +N` and `z -N` dirstack commands.
+- Bash: avoid downcasting `$PROMPT_COMMAND` array into a string.
+- Bash: avoid overwriting `$PIPESTATUS`.
+- POSIX: remove non-POSIX compliant calls to `builtin`.
+- Fish: clear existing completions when defining `z` command.
+
 ## [0.9.8] - 2025-05-27
 
 ### Added
@@ -22,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Bash: doctor now handles `PROMPT_COMMAND` being an array.
+- Bash: doctor now handles `$PROMPT_COMMAND` being an array.
 - Bash: doctor now handles Visual Studio Code's shell integration.
 - Bash: completions now work with `ble.sh`.
 - Nushell: stop ignoring symlinks when `cd`-ing into a directory.
@@ -35,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Nushell: support for 0.102.0.
+- Nushell: support for v0.102.0.
 - Bash / Zsh: add doctor to diagnose common issues.
 
 ### Fixed
@@ -302,7 +358,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `zoxide query --all` for listing deleted directories.
 - Lazy deletion for removed directories that have not been accessed in > 90
   days.
-- Nushell: support for 0.32.0+.
+- Nushell: support for v0.32.0+.
 
 ### Fixed
 
@@ -536,6 +592,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub Actions pipeline to build and upload releases.
 - Add support for Zsh.
 
+[0.10.0]: https://github.com/ajeetdsouza/zoxide/compare/v0.9.9...v0.10.0
+[0.9.9]: https://github.com/ajeetdsouza/zoxide/compare/v0.9.8...v0.9.9
 [0.9.8]: https://github.com/ajeetdsouza/zoxide/compare/v0.9.7...v0.9.8
 [0.9.7]: https://github.com/ajeetdsouza/zoxide/compare/v0.9.6...v0.9.7
 [0.9.6]: https://github.com/ajeetdsouza/zoxide/compare/v0.9.5...v0.9.6
